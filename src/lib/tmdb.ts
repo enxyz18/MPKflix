@@ -45,6 +45,20 @@ export async function searchMulti(query: string) {
   );
 }
 
+export async function searchPerson(query: string) {
+  const encodedQuery = encodeURIComponent(query);
+
+  return tmdbFetch(
+    `/search/person?query=${encodedQuery}&include_adult=false&language=en-US&page=1`
+  );
+}
+
+export async function getPersonMovieCredits(personId: string) {
+  return tmdbFetch(
+    `/person/${personId}/movie_credits?language=en-US`
+  );
+}
+
 export async function getNowPlayingMovies() {
   return tmdbFetch("/movie/now_playing");
 }
